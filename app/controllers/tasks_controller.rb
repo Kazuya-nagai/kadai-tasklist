@@ -2,11 +2,11 @@ class TasksController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
   before_action :correct_user,only: [:show,:destroy,:update]
   def index
-      @Tasks=Task.all
+      @task = current_user.tasks.order(id: :desc)
   end
 
   def show
-      @Task = Task.find(params[:id])
+      @task = Task.find(params[:id])
   end
 
   def new
